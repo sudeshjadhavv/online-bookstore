@@ -7,15 +7,18 @@ It includes features such as **JWT authentication**, **role-based access control
 
 ---
 
-## 🧱 Tech Stack
+## 🧰 Tech Stack
 
-- **Java 17**
-- **Spring Boot 3**
-- **Spring Security (JWT)**
-- **Hibernate / JPA**
-- **MySQL Database**
-- **Maven**
-- **Postman** (for testing)
+| Layer | Technology |
+|:------|:------------|
+| **Language** | Java 17 |
+| **Framework** | Spring Boot |
+| **ORM** | Hibernate / JPA |
+| **Database** | MySQL |
+| **Security** | Spring Security with JWT |
+| **Build Tool** | Maven |
+| **API Testing** | Postman / Swagger |
+| **Version Control** | Git & GitHub |
 
 ---
 
@@ -58,42 +61,80 @@ Make sure the following are installed:
 
 ### 🧩 Steps to Run the Project
 
-```bash
-# 1️⃣ Clone the repository
+### 1️⃣ Clone the repository
 git clone https://github.com/yourusername/online-bookstore.git
 
-# 2️⃣ Navigate to the project directory
+### 2️⃣ Navigate to the project directory
 cd online-bookstore
 
-# 3️⃣ Configure database in application.properties
+### 3️⃣ Configure database in application.properties
+```
 spring.datasource.url=jdbc:mysql://localhost:3306/bookstore_db
 spring.datasource.username=root
 spring.datasource.password=yourpassword
-
-# 4️⃣ Build the project
-mvn clean install
-
-# 5️⃣ Run the application
-mvn spring-boot:run
 ```
+### JWT Secret (use any random string)
+```
+app.jwt-secret=your_jwt_secret_key
+app.jwt-expiration=86400000
+```
+### 4️⃣ Run the application
+mvn spring-boot:run
 
----
+### 5️⃣  Verify Database Tables
 
-## 🧮 Database Design
+Once the application starts successfully, open **MySQL Workbench** and verify that these tables are created:
 
-**Tables:**
-- **users** — stores user details  
-- **roles** — defines user roles (`ADMIN`, `CUSTOMER`)  
-- **books** — contains book information  
-- **orders** — tracks orders made by users  
-- **order_items** — links orders with books  
+SHOW TABLES;
+```
++-------------------+
+| Tables_in_online_bookstore |
++-------------------+
+| users             |
+| books             |
+| orders            |
++-------------------+
+```
+### 🗄️ Database Design
+```
+┌────────────┐       ┌──────────────┐       ┌──────────────┐
+│   USERS    │1     M│    ORDERS    │M     1│    BOOKS     │
+│────────────│-------│──────────────│-------│──────────────│
+│ id (PK)    │       │ id (PK)      │       │ id (PK)      │
+│ name       │       │ orderDate    │       │ title        │
+│ email      │       │ user_id (FK) │       │ author       │
+│ password   │       │ book_id (FK) │       │ price        │
+│ role       │       │ quantity     │       │ category     │
+└────────────┘       └──────────────┘       └──────────────┘
+```
+###  Insert Sample Data (Admin, Customer, and Books)
 
-**Relationships:**
-- One **User** → Many **Orders**  
-- One **Order** → Many **OrderItems**  
-- One **Book** → Many **OrderItems**
+After the database and tables are ready, insert sample users and books to test the system.
+```
+-- INSERT SAMPLE USERS
+INSERT INTO users (name, email, password, role) VALUES
+('Admin User', 'admin@example.com', 'admin@123', 'ADMIN'),
+('Rohit Sharma', 'rohit@example.com', 'rohit@123', 'CUSTOMER'),
+('Priya Mehta', 'priya@example.com', 'priya@123', 'CUSTOMER');
 
----
+-- INSERT SAMPLE BOOKS
+INSERT INTO books (title, author, price, category) VALUES
+('The Java Handbook', 'Patrick Naughton', 799.00, 'Programming'),
+('Spring Boot in Action', 'Craig Walls', 699.00, 'Backend Development'),
+('Clean Code', 'Robert C. Martin', 999.00, 'Software Engineering'),
+('Effective Java', 'Joshua Bloch', 899.00, 'Programming');
+
+-- INSERT SAMPLE ORDERS
+INSERT INTO orders (order_date, user_id, book_id, quantity) VALUES
+(NOW(), 2, 1, 1),
+(NOW(), 2, 3, 1),
+(NOW(), 3, 4, 2);
+```
+### 🔍 Notes
+
+- Passwords here are **plain text** only for testing (in production, they should be **encrypted using BCrypt**).
+- Roles define **access levels** (e.g., only Admin can manage books and orders).
+- You can execute these SQL commands directly in **MySQL Workbench** or **phpMyAdmin** after creating the database.
 
 ## 🔐 Authentication Workflow
 
