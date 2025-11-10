@@ -135,7 +135,7 @@ INSERT INTO orders (order_date, user_id, book_id, quantity) VALUES
 - Passwords here are **plain text** only for testing (in production, they should be **encrypted using BCrypt**).
 - Roles define **access levels** (e.g., only Admin can manage books and orders).
 - You can execute these SQL commands directly in **MySQL Workbench** or **phpMyAdmin** after creating the database.
-
+## 6️⃣ 🚀 API Endpoints Documentation
 ## 🔐 Authentication Workflow
 
 1. **Register User** → `/api/auth/register`  
@@ -222,41 +222,91 @@ Authorization: Bearer <your_token_here>
 ## 🧩 Project Structure
 
 ```
-OnlineBookstore/
+online-bookstore/
 │
-├── src/
-│   ├── main/
-│   │   ├── java/com/sudesh/bookstore/
-│   │   │   ├── controller/        # REST Controllers
-│   │   │   ├── service/           # Business Logic Layer
-│   │   │   ├── repository/        # JPA Repositories
-│   │   │   ├── model/             # Entity Classes
-│   │   │   ├── security/          # JWT Authentication & Config
-│   │   │   └── BookstoreApplication.java  # Main Application Class
-│   │   └── resources/
-│   │       ├── application.properties
-│   │       └── data.sql (optional sample data)
-│   └── test/
-│       └── BookstoreApplicationTests.java
+├── 📁 src/
+│ └── 📁 main/
+│ └── 📁 java/
+│ └── 📁 com/sudesh/bookstore/
+│ │
+│ ├── 📁 config/
+│ │ └── SecurityConfig.java # Spring Security configuration
+│ │
+│ ├── 📁 controller/
+│ │ ├── AuthController.java # Handles user registration and login
+│ │ ├── BookController.java # CRUD operations for books
+│ │ └── OrderController.java # Manage orders
+│ │
+│ ├── 📁 entities/
+│ │ ├── User.java # Represents users (Admin/Customer)
+│ │ ├── Book.java # Represents book details
+│ │ └── Order.java # Represents orders placed by users
+│ │
+│ ├── 📁 repositories/
+│ │ ├── UserRepository.java # Handles DB operations for User
+│ │ ├── BookRepository.java # Handles DB operations for Book
+│ │ └── OrderRepository.java # Handles DB operations for Order
+│ │
+│ ├── 📁 security/
+│ │ ├── JwtAuthenticationFilter.java # Filters incoming requests for JWT
+│ │ ├── JwtTokenProvider.java # Generates and validates JWT tokens
+│ │ └── CustomUserDetailsService.java # Loads user-specific data
+│ │
+│ ├── 📁 service/
+│ │ ├── AuthService.java # Handles user auth logic
+│ │ ├── BookService.java # Handles book management logic
+│ │ ├── OrderService.java # Handles order management logic
+│ │ └── impl/ # Service implementation layer
+│ │ ├── AuthServiceImpl.java
+│ │ ├── BookServiceImpl.java
+│ │ └── OrderServiceImpl.java
+│ │
+│ └── BookstoreApplication.java # Main Spring Boot application class
 │
-├── pom.xml
-└── README.md
+├── 📄 pom.xml # Maven dependencies and plugins
+├── 📄 README.md # Project documentation
+└── 📄 .gitignore # Ignored files for Git
 ```
+---
+
+
+## 🏁 Project Conclusion
+
+The **Online Bookstore Application** successfully demonstrates a complete backend implementation using **Java, Spring Boot, Hibernate, and MySQL**.  
+It provides a secure, modular, and scalable solution for managing books, users, and orders efficiently.
+
+Key highlights include:
+- Secure authentication and authorization using **JWT**.
+- Separation of concerns with a **layered architecture**.
+- Efficient database management using **Spring Data JPA and Hibernate**.
+- Fully tested **RESTful APIs** for smooth integration with any frontend application.
+- Reusable and maintainable code design following **best Spring Boot practices**.
+
+This project reflects strong backend development skills, clean API design, and practical implementation of real-world enterprise patterns.
 
 ---
 
-## 🏁 Conclusion
+## 🚀 Future Enhancements
 
-The **Online Bookstore Application** demonstrates a full-fledged backend service with secure APIs, robust data handling, and scalable architecture.  
-It can be easily extended to integrate with a frontend or mobile app.
+Here are some potential improvements and features that can be added to make the system more powerful and production-ready:
+
+✅ **Payment Gateway Integration** — Add secure payment processing (e.g., Razorpay, Stripe) for online orders.  
+✅ **Inventory Management** — Track stock levels and auto-update book availability.  
+✅ **Email Notifications** — Notify users about successful orders or password resets.  
+✅ **Admin Dashboard** — Build a frontend dashboard using React or Angular for easier management.  
+✅ **Pagination & Search Filters** — Improve book browsing with sorting, filtering, and pagination.  
+✅ **Cloud Deployment** — Deploy on AWS / Render / Railway for real-world access.  
+✅ **Comprehensive Testing** — Add unit and integration tests for all layers.
 
 ---
+
+✨ *This project demonstrates a strong understanding of Spring Boot backend development and can serve as a solid foundation for any full-stack e-commerce or online management system.*
 
 ## 📞 Contact
 
 **👨‍💻 Developer:** Sudesh Jadhav  
-**📧 Email:** sudeshjadhav@gmail.com  
+**📧 Email:** sudeshjadhavv@gmail.com  
 **🔗 GitHub:** [https://github.com/sudeshjadhavv](https://github.com/sudeshjadhavv)  
-**🚀 Live Demo:** [https://sudeshjadhavv.github.io/online-bookstore](https://sudeshjadhavv.github.io/online-bookstore)
+**🚀 Live:** [https://sudeshjadhavv.github.io/online-bookstore](https://sudeshjadhavv.github.io/online-bookstore)
 
 ---
