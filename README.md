@@ -155,6 +155,7 @@ INSERT INTO orders (order_date, user_id, book_id, quantity) VALUES
 ## 📡 API Endpoints
 
 ### 🔑 Authentication
+
 | Method | Endpoint | Description |
 |:-------:|:----------|:-------------|
 | POST | `/api/auth/register` | Register a new user |
@@ -163,6 +164,7 @@ INSERT INTO orders (order_date, user_id, book_id, quantity) VALUES
 ---
 
 ### 📚 Books
+
 | Method | Endpoint | Description | Access |
 |:-------:|:----------|:-------------|:---------|
 | GET | `/api/books` | Get all books | Public |
@@ -174,6 +176,7 @@ INSERT INTO orders (order_date, user_id, book_id, quantity) VALUES
 ---
 
 ### 🛒 Orders
+
 | Method | Endpoint | Description | Access |
 |:-------:|:----------|:-------------|:---------|
 | GET | `/api/orders` | Get all orders (Admin) | Admin |
